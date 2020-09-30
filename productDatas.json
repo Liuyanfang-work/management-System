@@ -1,0 +1,46 @@
+{
+  "products":[
+    {
+      "id":1,
+      "pd":"HW168",
+      "title":"小米移动电源10000mAh",
+      "price":"79元",
+      "avaliable":600
+    },
+    {
+      "id":2,
+      "pd":"HW169",
+      "title":"小米圈铁耳机",
+      "price":"49元",
+      "avaliable":500
+    },
+    {
+      "id":3,
+      "pd":"HW170",
+      "title":"小米活塞耳机 基础版",
+      "price":"29元",
+      "avaliable":500
+    },
+    {
+      "id":4,
+      "pd":"HW171",
+      "title":"小米移动电源10000mAh 高配版",
+      "price":"149元",
+      "avaliable":400    
+    },
+    {
+      "id":5,
+      "pd":"HW172",
+      "title":"RedmiK30",
+      "price":"1999元",
+      "avaliable":700
+    },
+    {
+      "id":6,
+      "pd":"HW173",
+      "title":"王一博同款手机",
+      "price":"2999元",
+      "avaliable":600
+    }
+  ]
+}
