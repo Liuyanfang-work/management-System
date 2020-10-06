@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>商品列表</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <style>
+        #search{margin-top: 30px;}
+        #mybg{background-color: #eeeeee;}
+        .wq-add .modal-content{
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+	<div class="container-fluid" id="search">
+        <div class="row">
+            <div class="col-lg-4">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" data-toggle="modal" data-target=".wq-add">Go!</button>
+                  </span>
+              </div>
+            </div>
+        </div>
+		<h3 class="wq-title">
+            <button type="button" class="btn" data-toggle="modal" data-target=".wq-add">
+				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+				添加
+			</button>
+			<button type="button" class="btn" data-toggle="modal" data-target=".wq-add">
+				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+				删除
+			</button>
+		</h3>
+		<!-- 更改商品信息部分 -->
+		<div class="modal fade wq-add">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<!--细节划分-->
+                    <h4>商品信息</h4>
+                    <div class="form-group">
+						<label for="wq-where">货号</label>
+						<input type="text" class="form-control" id="wq-content">
+					</div>
+					<div class="form-group">
+						<label for="wq-content">商品名称</label>
+						<input type="text" class="form-control" id="wq-content">
+					</div>
+					<div class="form-group">
+						<label for="title">价格</label>
+						<input type="text" class="form-control" id="wq-content">
+                    </div>
+                    <div class="form-group">
+						<label for="title">库存</label>
+						<input type="text" class="form-control" id="wq-content">
+					</div>
+					<div class="text-center">
+						<button type="button" class="btn btn-success" data-dismiss="modal"
+							id="wq-save-question">提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--错题表格-->
+		<div class="row">
+			<table class="table table-bordered table-hover wq-main-table">
+				<!--错题项目-->
+				<thead id="mybg">
+					<tr>
+						<th class="col-md-1 text-center">
+                            <input type="checkbox" value="">  
+                        </th>
+                        <th class="col-md-2 text-center">货号</th>
+						<th class="col-md-4 text-center">商品名称</th>
+                        <th class="col-md-2 text-center">价格</th>
+                        <th class="col-md-2 text-center">库存</th>
+						<th class="col-md-2 text-center wq-title">
+                            <button type="button" class="btn" data-toggle="modal" data-target=".wq-add">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                                改
+                            </button>
+                        </th>
+					</tr>
+                </thead>
+                
+			</table>
+		</div>
+		<div class="row text-center">
+			<ul class="pagination">
+				<li><a href="#">&laquo;</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">&raquo;</a></li>
+			</ul>
+		</div>
+	</div>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+	
+</body>
+
+</html>
