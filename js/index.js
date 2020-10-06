@@ -14,7 +14,7 @@ function show(){
                         <th class="col-md-2 text-center">${ele.price}</th>
                         <th class="col-md-2 text-center">${ele.avaliable}</th>
                         <th class="col-md-2 text-center wq-title">
-                            <button type="button" class="btn" data-toggle="modal" data-target=".wq-add">
+                            <button type="button" class="btn revise" data-toggle="modal" data-target=".wq-add" data-id=${ele.id}>
                                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                                 改
                             </button>
@@ -23,8 +23,29 @@ function show(){
             `;
             });
         $("#mybody").prepend(str);
-        })
- 
+        // 点击修改按钮展示当前id的内容
+        $(".revise").click(function(){
+            
+            var id=$(this).attr("data-id");
+            axios.get("http://localhost:3000/products?id="+id).then(res=>{
+                $("#myhd").val(res.data[0].pd);
+                $("#mytitle").val(res.data[0].title);
+                $("#myprice").val(res.data[0].price);
+                $("#myaval").val(res.data[0].avaliable);
+            });
+            // 弹出层内容改变，保存改变(有点小问题，修改不再原位置上面改而是加id)
+            $(".myalert input").each(ele=>{
+                if($(".myalert input")[ele].change){
+                    axios.patch("http://localhost:3000/products?id="+id).then(res=>{
+                        id:id,
+                        res.data[0][ele + 1]=$(".myalert input")[ele].change().val()
+                    });
+                }
+            });
+            
+        });
+        
+    })   
 }
 // 添加数据
 function Add(){
