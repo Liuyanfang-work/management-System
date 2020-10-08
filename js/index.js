@@ -7,7 +7,7 @@ function show(){
             str+=`
                 <tr id="mybg">
                         <th class="col-md-1 text-center">
-                            <input type="checkbox" value="">  
+                            <input type="checkbox" value="" data-id=${ele.id} class="mydel">  
                         </th>
                         <th class="col-md-2 text-center">${ele.pd}</th>
                         <th class="col-md-3 text-center">${ele.title}</th>
@@ -23,10 +23,10 @@ function show(){
             `;
             });
         $("#mybody").prepend(str);
+
         // 点击修改按钮展示当前id的内容
         $(".revise").click(function(){
-            
-            var id=$(this).attr("data-id");
+            let id=$(this).attr("data-id");
             axios.get("http://localhost:3000/products?id="+id).then(res=>{
                 $("#myhd").val(res.data[0].pd);
                 $("#mytitle").val(res.data[0].title);
@@ -35,21 +35,31 @@ function show(){
             });
             // 弹出层内容改变，保存改变(有点小问题，修改不再原位置上面改而是加id)
             $(".myalert input").each(ele=>{
-                if($(".myalert input")[ele].change){
-                    axios.patch("http://localhost:3000/products?id="+id).then(res=>{
-                        id:id,
-                        res.data[0][ele + 1]=$(".myalert input")[ele].change().val()
-                    });
-                }
+            if($(".myalert input")[ele].change&&$("#mybtn").click()){
+                axios.patch("http://localhost:3000/products?id="+id).then(res=>{
+                    res.data[0][ele + 1]=$(".myalert input")[ele].change().val()
+                });
+            }
+        });   
+        });
+        // 删除
+        $("#mydelete").click(function(){
+            let idarr=[];
+            $(".mydel:checked").each(function(){
+                idarr.push($(this).attr("checked","checked").attr("data-id"));
             });
-            
+            // console.log(idarr);
+            idarr.forEach(ele=>{
+                axios.delete("http://localhost:3000/products/"+ele);
+            });
         });
         
-    })   
-}
+    }) 
+}  
+
 // 添加数据
 function Add(){
-	// 添加功能(存在的问题：不能实时刷新要手动刷新)
+    // 添加功能(存在的问题：不能实时刷新要手动刷新)
     $("#mybtn").click(function(){
         // console.log($("#myhd").change().val());
         axios.post("http://localhost:3000/products",{
@@ -59,4 +69,5 @@ function Add(){
             avaliable:$("#myaval").change().val()
         });
     });		
+
 }
